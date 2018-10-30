@@ -8,7 +8,7 @@ Demo for deploying the application in Google Compute Engine.
 * java 8
 * Google cloud SDK (gcloud,gsutil)
 
-##Application deployment 
+## Application deployment 
 
 ### Building a release for deployment
 Create a Google Cloud Storage bucket
@@ -31,10 +31,10 @@ You use Cloud Storage to store your application's dependencies.
 
 3. Deploying your application to a single instance
     
-    1. Run  a startup script.Create a file called instance-startup.sh in the application's root directory
+    1. Run  a startup script. Created a file called instance-startup.sh in the application's root directory
             
            $ sh instance-startup.sh 
-    2. Create and configure a Compute Engine instance .
+    2. Created and configured a Compute Engine instance .
     
            $ sh deploy.sh
            
