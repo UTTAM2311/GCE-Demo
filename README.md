@@ -31,9 +31,13 @@ You use Cloud Storage to store your application's dependencies.
 
 3. Deploying your application to a single instance
     
-    1. Run  a startup script. Created a file called instance-startup.sh in the application's root directory. Created and configured a Compute Engine instance .
+    1. Runs  a startup script and create the VM instance.(Note: Created a file called instance-startup.sh in the application's root directory. Created and configured a Compute Engine instance) .
     
            $ sh deploy.sh
+    
+    2. (Optional) If want to deploy in 2 instance with load balancing .
+    
+           $ sh deploy.sh 
            
    #### Reference link :
    * https://cloud.google.com/community/tutorials/kotlin-springboot-compute-engine
