@@ -31,10 +31,7 @@ You use Cloud Storage to store your application's dependencies.
 
 3. Deploying your application to a single instance
     
-    1. Run  a startup script. Created a file called instance-startup.sh in the application's root directory
-            
-           $ sh instance-startup.sh 
-    2. Created and configured a Compute Engine instance .
+    1. Run  a startup script. Created a file called instance-startup.sh in the application's root directory. Created and configured a Compute Engine instance .
     
            $ sh deploy.sh
            
