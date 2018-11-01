@@ -1,0 +1,14 @@
+-- EXTENSIONS
+CREATE EXTENSION IF NOT EXISTS "plpgsql";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- SCHEMA
+CREATE SCHEMA IF NOT EXISTS demo;
+
+-- TABLES
+CREATE TABLE demo.employee (
+  id         BIGSERIAL,
+  name       VARCHAR(255) NOT NULL UNIQUE,
+  employeeId    VARCHAR(255),
+  PRIMARY KEY (id)
+);

@@ -1,0 +1,42 @@
+server.connection-timeout: -1
+server:
+  port: 8080
+  servlet:
+    context-path: /
+application:
+  uploadService:
+    bucketName: ${bucket_name}
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-test-query: SELECT 'Hello world'
+      connection-timeout: 3000000
+      idle-timeout: 30000
+      max-lifetime: 2000000
+      maximum-pool-size: 300
+      minimum-idle: 10
+    password: ${db_password}
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://${db_ip_address}:5432/${db_name}?currentSchema=demo
+    username: ${db_username}
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+    joda-date-time-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
+    default-property-inclusion: non_null
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+  jpa:
+    generate-ddl: false
+    databasePlatform: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        format_sql: false
+        temp:
+          use_jdbc_metadata_defaults: false
