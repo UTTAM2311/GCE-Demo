@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.6.RELEASE'
+        springBootVersion = '2.1.0.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -9,7 +9,9 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
-
+plugins {
+    id 'org.springframework.boot' version '2.0.4.RELEASE'
+}
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -19,20 +21,30 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+ext.versions = [
+        log4j2    : "2.11.1",
+]
+
+configurations.all {
+    exclude group: "commons-logging", module: "commons-logging"
+    exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    exclude group: "ch.qos.logback"
+}
+
 repositories {
     mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
 }
 
 
 dependencies {
 
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.0.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+   // compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.0.4.RELEASE'
     compile 'com.google.cloud:google-cloud-storage:1.40.0'
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.4'
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter-sql-postgresql
-    // compile group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter-sql-postgresql', version: '1.0.0.RELEASE'
     // https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.12.Final'
     // https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator-annotation-processor
@@ -49,6 +61,18 @@ dependencies {
     compile group: 'org.flywaydb', name: 'flyway-core', version: '5.2.1'
     // https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
     compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.3'
+// https://mvnrepository.com/artifact/com.google.cloud/google-cloud-pubsub
+    compile group: 'com.google.cloud', name: 'google-cloud-pubsub', version: '1.51.0'
+    // https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-core
+    compile group: 'org.springframework.integration', name: 'spring-integration-core', version: '5.1.0.RELEASE'
 
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: "${versions.log4j2}"
+
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "${versions.log4j2}"
+
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "${versions.log4j2}"
 
 }

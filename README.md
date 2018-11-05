@@ -25,11 +25,10 @@ You use Cloud Storage to store your application's dependencies.
     1. Build the Spring Boot application by running the following command from the root of your application folder:
   
            gradle clean build -x test
-    2. Upload the app to Cloud Storage and also create and upload cloud-sql service account file (follow this link for [service-account](https://cloud.google.com/sql/docs/mysql/connect-external-app#proxy) creation). Similarly for Cloud storage Integration with the app create another service account file (follow this [link](https://cloud.google.com/storage/docs/reference/libraries#setting_up_authentication)) :
+    2. Upload the app to Cloud Storage and also create and upload [cloud-sql](https://cloud.google.com/sql/docs/mysql/connect-external-app#proxy),[pub/sub](https://cloud.google.com/pubsub/docs/reference/libraries#setting_up_authentication) and [storage](https://cloud.google.com/storage/docs/reference/libraries#setting_up_authentication) service account file (Note: Role to be added for service account - *OWNER*, *PUB/SUB ADMIN*, *STORAGE ADMIN*, *CLOUD SQL ADMIN*   ) :
 
            gsutil cp build/libs/* gs://demo-01/demo.jar
-           gsutil cp <cloud_sql_service-account.json file> gs://demo-01/key.json
-           gsutil cp <cloud_storage_service-account.json file> gs://demo-01/storage.json
+           gsutil cp <service-account.json file> gs://demo-01/cred.json
            
 3. Deploying your application to a single instance
     
@@ -38,7 +37,11 @@ You use Cloud Storage to store your application's dependencies.
            INSTANCE_CONNECTION_NAME 
            DB_NAME
            DB_USERNAME
-           DB_PASSWORD
+           DB_PASSWORD        
+           PUBSUB_TOPIC
+           PUBSUB_SUBSCRIPTION_NAME
+           BUCKET(demo-01)
+           
            
       These variables need to be filled in the <i>instance-startup.sh</i> file .
                          
@@ -48,7 +51,7 @@ You use Cloud Storage to store your application's dependencies.
     
     3. (Optional) If want to deploy in 2 instance with load balancing .
     
-           $ sh deploy.sh 
+           $ sh deploy-group.sh 
            
    #### Reference link :
    * https://cloud.google.com/community/tutorials/kotlin-springboot-compute-engine
