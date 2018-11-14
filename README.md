@@ -63,6 +63,10 @@ You use Cloud Storage to store your application's dependencies.
         db_name
         db_username
         GOOGLE_APPLICATION_CREDENTIALS (A service account json file with following roles - *OWNER* , *PUB/SUB ADMIN* , *STORAGE ADMIN* , *CLOUD SQL ADMIN*  and CLOUD SQL ADMIN API should be enabled)
-           
+
+2. Run the Command 
+       
+        $ gradle bootRun 
+
    #### Reference link :
    * https://cloud.google.com/community/tutorials/kotlin-springboot-compute-engine
