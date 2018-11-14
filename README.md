@@ -11,7 +11,7 @@ Demo for deploying the application in Google Compute Engine.
 ## Application deployment 
 
 ### Building a release for deployment
-Create a Google Cloud Storage bucket
+Create a Google Cloud Storage bucket,SQL Instance, Pub/Sub topic and subscription.
 
 You use Cloud Storage to store your application's dependencies.
 
@@ -52,6 +52,17 @@ You use Cloud Storage to store your application's dependencies.
     3. (Optional) If want to deploy in 2 instance with load balancing .
     
            $ sh deploy-group.sh 
+           
+### Running locally 
+1. Configure the local variables present in *application.yml* in src/main/resources .
+
+        pub_sub_topic
+        pub_sub_subscription_name
+        bucket_name
+        db_ip_address
+        db_name
+        db_username
+        GOOGLE_APPLICATION_CREDENTIALS (A service account json file with following roles - *OWNER* , *PUB/SUB ADMIN* , *STORAGE ADMIN* , *CLOUD SQL ADMIN*  and CLOUD SQL ADMIN API should be enabled)
            
    #### Reference link :
    * https://cloud.google.com/community/tutorials/kotlin-springboot-compute-engine
